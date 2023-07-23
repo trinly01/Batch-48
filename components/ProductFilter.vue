@@ -1,6 +1,7 @@
 <template>
     <div class="flex items-center justify-between bg-gray-200 py-4 px-8">
       <!-- Left side: Tabs -->
+      
       <div class="flex items-center space-x-6">
         <button
           v-for="category in categories"
@@ -16,6 +17,7 @@
       <!-- Center: Search Bar -->
       <div class="flex-1 flex items-center justify-center">
         <input
+            v-model="searchText"
           type="text"
           class="border border-gray-300 rounded-lg py-2 px-4 w-full focus:outline-none"
           placeholder="Search..."
@@ -35,6 +37,8 @@
   import { ref } from 'vue';
   
   const activeTab = ref('all'); // Default to 'all' tab
+
+  const searchText = ref('')
   
   const categories = ['all', ...await $fetch('https://fakestoreapi.com/products/categories')];
   </script>
