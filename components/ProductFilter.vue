@@ -3,7 +3,7 @@
     <!-- Left side: Tabs -->
     
     <div class="flex items-center space-x-6">
-        {{ activeTab }}
+        <!-- {{ activeTab }} asd -->
     <button
         v-for="category in categories"
         :key="category"
@@ -17,7 +17,7 @@
 
     <!-- Center: Search Bar -->
     <div class="flex-1 flex items-center justify-center">
-        {{ searchText }}
+        <!-- {{ searchText }} -->
     <input
         :value="searchText"
         @input="event => setSearchText(event.target.value)"

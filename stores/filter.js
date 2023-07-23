@@ -2,7 +2,7 @@ import { defineStore } from 'pinia';
 
 export const useProductFilter = defineStore('productFilter', {
   state: () => ({
-    searchText: 'Searching...',
+    searchText: '',
     activeTab: 'all',
   }),
   getters: {
