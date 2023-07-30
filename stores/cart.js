@@ -6,6 +6,18 @@ export const useCart = defineStore('cart', {
     products: []
   }),
   getters: {
+    consolidatedItemsByQuantity () {
+        // detect how many quantities per item.
+        // use map // or for loop
+        // "for in" or "for of"
+        // temporary Array/Object for counters
+
+        [{name: 'shorts'}, {name: 'shorts'}, {name: 'pants'}]
+
+        [[{name: 'shorts', qty: 2}, {name: 'pants', qty: 1}]]
+
+        return this.products
+    }
   },
   actions: {
     initialize () {
