@@ -23,11 +23,35 @@
         <h2 class="text-lg font-semibold">Description</h2>
         <p class="text-gray-700 mt-2">{{ product.description }}</p>
       </div>
+
+      <button @click="addToCart" class="mt-4 bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded">
+        Add to Cart
+        </button>
+
+      <div class="max-w-xl mx-auto bg-white rounded-xl shadow-md p-6 mt-4">
+        {{ cart  }}
+      </div>
     </div>
   </template>
 
 <script setup>
+    import { useCart } from '~/stores/cart'
+
+    const cartStore = useCart()
+
+    onMounted(() => {
+        console.log('hello world')
+        cartStore.initialize()
+    })
+    
+
+    const cart = computed(() => cartStore.products)
+
     const product = await $fetch('https://fakestoreapi.com/products/1')
 
     console.log(product)
+
+    const addToCart = () => {
+        cartStore.addToCart(product)
+    }
 </script>
