@@ -28,14 +28,13 @@
         Add to Cart
         </button>
 
-      <div class="max-w-xl mx-auto bg-white rounded-xl shadow-md p-6 mt-4">
-        {{ cart  }}
-      </div>
+        <Cart />
     </div>
   </template>
 
 <script setup>
     import { useCart } from '~/stores/cart'
+    const route = useRoute()
 
     const cartStore = useCart()
 
@@ -45,9 +44,9 @@
     })
     
 
-    const cart = computed(() => cartStore.products)
+    // const cart = computed(() => cartStore.products)
 
-    const product = await $fetch('https://fakestoreapi.com/products/1')
+    const product = await $fetch('https://fakestoreapi.com/products/'+ route.params.id)
 
     console.log(product)
 

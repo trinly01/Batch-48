@@ -2,6 +2,7 @@
 const { product } = defineProps(['product']);
 </script>
 <template>
+  <NuxtLink :to="`/product/${product.id}`">
   <div class="max-w-sm rounded overflow-hidden shadow-lg">
     <img class="w-full h-48 object-contain" :src="product.image">
     <div class="px-6 py-4">
@@ -24,4 +25,5 @@ const { product } = defineProps(['product']);
       </div>
     </div>
   </div>
+  </NuxtLink>
 </template>

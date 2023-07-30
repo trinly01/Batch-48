@@ -8,6 +8,8 @@
                 :product="product"
             />
         </div>
+
+        <Cart />
     </div>
 </template>
 

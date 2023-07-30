@@ -3,6 +3,15 @@
     <!-- Left side: Tabs -->
     
     <div class="flex items-center space-x-6">
+    <NuxtLink  to="/" >
+        <button
+            ref="/"
+            class="bg-green-500 text-white py-2 px-4 rounded focus:outline-none"
+            >
+        Home
+        </button>
+    </NuxtLink >
+    
         <!-- {{ activeTab }} asd -->
     <button
         v-for="category in categories"
@@ -28,17 +37,32 @@
     </div>
 
     <!-- Right side: Cart Button -->
-    <button
-    class="bg-green-500 text-white py-2 px-4 rounded focus:outline-none"
-    >
-    Cart
-    </button>
+    <NuxtLink to="/cart">
+        <button
+        ref="/cart"
+        class="bg-green-500 text-white py-2 px-4 rounded focus:outline-none"
+        >
+        Cart ({{ cart.length }})
+        </button>
+    </NuxtLink>
 </div>
 </template>
 
 <script setup>
 
 import { useProductFilter } from '~/stores/filter'
+
+import { useCart } from '~/stores/cart'
+
+const cartStore = useCart()
+
+onMounted(() => {
+    console.log('hello world')
+    cartStore.initialize()
+})
+    
+
+const cart = computed(() => cartStore.products)
 
 const filterStore = useProductFilter()
 

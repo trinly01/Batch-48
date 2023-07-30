@@ -15,6 +15,12 @@ export const useCart = defineStore('cart', {
     addToCart (product) {
         this.products.push(product)
         localStorage.setItem('cart', JSON.stringify(this.products))
+    },
+    removeItem(product) {
+        const i = this.products.findIndex(p => p.id === product.id)
+
+        this.products.splice(i, 1)
+        localStorage.setItem('cart', JSON.stringify(this.products))
     }
   },
 });
