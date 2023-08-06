@@ -1,5 +1,12 @@
 <script setup>
 const { product } = defineProps(['product']);
+
+const expired = ref(false)
+
+const expiredNaBa = (data) => {
+  console.log('expiredNaBa', data)
+  expired.value = data
+}
 </script>
 <template>
   <NuxtLink :to="`/product/${product.id}`">
@@ -23,6 +30,7 @@ const { product } = defineProps(['product']);
         </svg>
         <p class="ml-2 text-gray-700">{{ product.rating.rate }} ({{ product.rating.count }} reviews)</p>
       </div>
+      <sale-timer v-if="!expired" category="test" @expiredNa="expiredNaBa" />
     </div>
   </div>
   </NuxtLink>
