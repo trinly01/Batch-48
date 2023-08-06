@@ -20,18 +20,31 @@ export const useCart = defineStore('cart', {
     }
   },
   actions: {
-    initialize () {
+    async initialize () {
         console.log('i am a browser')
-        this.products = JSON.parse(localStorage.getItem('cart')) || []
+        // this.products = JSON.parse(localStorage.getItem('cart')) || []
+        this.products = await $fetch('http://localhost:3030/cart/user/123')
     },
-    addToCart (product) {
+    async addToCart (product) {
         this.products.push(product)
         localStorage.setItem('cart', JSON.stringify(this.products))
+        await $fetch('http://localhost:3030/cart/user/123', {
+          method: 'PUT',
+          body: {
+            cart: this.products
+          }
+        })
+        console.log('client saved')
     },
-    removeItem(product) {
+    async removeItem(product) {
         const i = this.products.findIndex(p => p.id === product.id)
 
+        
+        await useFetch('http://localhost:3030/cart/user/123/item/'+product.id, {
+            method: 'DELETE',
+        })
         this.products.splice(i, 1)
+        console.log('client deleted')
         localStorage.setItem('cart', JSON.stringify(this.products))
     }
   },
